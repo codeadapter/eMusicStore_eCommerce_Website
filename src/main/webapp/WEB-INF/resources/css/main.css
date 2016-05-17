@@ -1,0 +1,45 @@
+.container-wrapper{
+
+    /*!*height: 80%;*!*/
+    /*margin: auto;*/
+    /*margin-top: 80px;*/
+    /*margin-bottom: 300px;*/
+
+}
+.home-image{
+
+    display: block;
+    width: 100%; !important;
+    height: auto; !important;
+}
+
+
+.table{
+    table-layout: fixed;
+    overflow: auto;
+}
+
+.table th {
+    text-align: center;
+}
+
+.table tr {
+
+    text-align: center;
+    background: whitesmoke;
+    /*display: block;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
+}
+
+.login-box{
+
+    text-align: center;
+}
+
+.login-container{
+    width:40%;
+    margin:auto;
+    margin-top: 100px;
+}

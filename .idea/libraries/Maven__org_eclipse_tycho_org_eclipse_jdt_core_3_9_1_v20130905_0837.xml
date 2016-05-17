@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.tycho:org.eclipse.jdt.core:3.9.1.v20130905-0837">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.9.1.v20130905-0837/org.eclipse.jdt.core-3.9.1.v20130905-0837.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.9.1.v20130905-0837/org.eclipse.jdt.core-3.9.1.v20130905-0837-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/tycho/org.eclipse.jdt.core/3.9.1.v20130905-0837/org.eclipse.jdt.core-3.9.1.v20130905-0837-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

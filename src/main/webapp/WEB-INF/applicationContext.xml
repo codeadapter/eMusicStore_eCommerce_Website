@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/ajinkya"/>
+    <property name="username" value="student"/>
+    <property name="password" value="student"/>
+    <!--<property name="driverClassName" value="org.h2.Driver"></property>-->
+    <!--<property name="url" value="jdbc:h2:~/test"></property>-->
+    <!--<property name="username" value="sa"></property>-->
+    <!--<property name="password" value=""></property>-->
+</bean>
+
+
+<bean id="sessionfactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+    <property name="dataSource" ref="datasource"/>
+    <property name="hibernateProperties">
+        <props>
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+            <prop key="hibernate.hbm2ddl.auto">update</prop>
+            <prop key="hibernate.show_sql">true</prop>
+            <prop key="hibernate.format_sql">true</prop>
+        </props>
+    </property>
+    <property name="packagesToScan" >
+        <list>
+            <value>com.emusicstore</value>
+        </list>
+    </property>
+</bean>
+
+<bean id="transactionmanager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionfactory"/>
+</bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="1024000"/>
+    </bean>
+
+<security:http auto-config="true">
+    <security:intercept-url pattern="/admin/**" access="ROLE_USER"/>
+    <security:form-login
+            login-page="/login"
+            default-target-url="/admin/"
+            authentication-failure-url="/login?error"
+            username-parameter="username"
+            password-parameter="password"/>
+    <security:logout logout-success-url="/login?logout"/>
+</security:http>
+
+
+<security:authentication-manager >
+    <security:authentication-provider>
+        <security:jdbc-user-service data-source-ref="datasource"
+                                    authorities-by-username-query="SELECT username,authority FROM authorities WHERE username=?"
+                                    users-by-username-query="SELECT username,password,enabled FROM users WHERE username=?"/>
+    </security:authentication-provider>
+</security:authentication-manager>
+
+</beans>
